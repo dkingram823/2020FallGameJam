@@ -12,7 +12,7 @@ public class playerMovement : MonoBehaviour
     }
 
     public GameObject playerIdle;
-    public CharacterController contoller;
+    public SpriteRenderer renderer;
 
     // Update is called once per frame
     void Update()
@@ -24,21 +24,21 @@ public class playerMovement : MonoBehaviour
         if (y > 0 && playerLoc>=2) //press up
         {
             playerLoc -= 2;
-            Debug.Log("up" + playerLoc);
+            //Debug.Log("up" + playerLoc);
         }else if (y < 0 && playerLoc<=1) //press down
         {
             playerLoc += 2;
-            Debug.Log("down" + playerLoc);
+            //Debug.Log("down" + playerLoc);
         }
         if (x > 0 && playerLoc%2==0) //press right
         {
             playerLoc += 1;
-            Debug.Log("right" + playerLoc);
+            //Debug.Log("right" + playerLoc);
         }
         else if (x < 0 && playerLoc%2==1) //press left
         {
             playerLoc -= 1;
-            Debug.Log("left" + playerLoc);
+            //Debug.Log("left" + playerLoc);
         }
 
         int playertop = 1;
@@ -48,10 +48,12 @@ public class playerMovement : MonoBehaviour
         if (playerLoc % 2 == 0) //player is on left
         {
             playerIdle.transform.localPosition = new Vector3(1f, 2f - (3 * playertop), -3.5f);
+            renderer.flipX = false;
         }
         else if (playerLoc % 2 == 1) //player is on right
         {
             playerIdle.transform.localPosition = new Vector3(1f, 2f - (3 * playertop), 0f);
+            renderer.flipX = true;
         }
 
         if (playerLoc < 2) //player is on top
